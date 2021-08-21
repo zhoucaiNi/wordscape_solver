@@ -7,8 +7,9 @@ def get_words():
     valid_words = set()
     with open(resource_path("words.txt")) as dict_words:
       for dict_word in dict_words:
+        dict_word = dict_word.strip()
         if(len(dict_word) <= 7 and len(dict_word) >= 3):
-          valid_words.add(dict_word.strip())
+          valid_words.add(dict_word)
 
     print ("Enter the available letters (q to quit):")
     for line in fileinput.input():
@@ -21,6 +22,7 @@ def get_words():
             words = set()
             for word_tuple in itertools.permutations(line, word_length):
                 word_string = ''.join(word_tuple)
+
                 if (word_string in valid_words):
                     words.add(word_string)
 
